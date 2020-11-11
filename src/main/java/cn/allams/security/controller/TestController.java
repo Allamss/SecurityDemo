@@ -10,6 +10,11 @@ public class TestController {
 
     @GetMapping("/echo")
     public String echo() {
+        return "welcome on";
+    }
+
+    @GetMapping("/hello")
+    public String hello() {
         return "hello";
     }
 }
