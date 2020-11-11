@@ -33,6 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/test/echo").permitAll() //登陆成功后默认跳转路径
             .and().authorizeRequests()
                 .antMatchers("/", "/user/login", "/test/hello").permitAll() //设置不需要认证的路径
+                // 当前登录用户，只有具有admins权限的才可以访问这个路径
+                //.antMatchers("/test/admin").hasAuthority("admins")
+                // 同时设置多个权限
+                .antMatchers("/test/manager").hasAnyAuthority("admins,manager")
             .anyRequest().authenticated()
                 .and().csrf().disable(); //关闭csrf
     }
