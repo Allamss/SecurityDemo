@@ -17,4 +17,9 @@ public class TestController {
     public String hello() {
         return "hello";
     }
+
+    @GetMapping("/manager")
+    public String manager() {
+        return "manager";
+    }
 }
