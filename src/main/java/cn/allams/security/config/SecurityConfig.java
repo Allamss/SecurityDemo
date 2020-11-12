@@ -27,6 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 其他配置
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 配置没有权限跳转的自定义页面
+        http.exceptionHandling().accessDeniedPage("/noauth.html");
         http.formLogin() //自定义自己编写的登陆页面
             .loginPage("/login.html") //登录页面设置
             .loginProcessingUrl("/user/login") //登录界面的url
