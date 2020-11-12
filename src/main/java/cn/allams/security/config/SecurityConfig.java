@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 当前登录用户，只有具有admins权限的才可以访问这个路径
                 //.antMatchers("/test/admin").hasAuthority("admins")
                 // 同时设置多个权限
-                .antMatchers("/test/manager").hasAnyAuthority("admins,manager")
+                .antMatchers("/test/manager").hasAnyAuthority("admins","manager")
             .anyRequest().authenticated()
                 .and().csrf().disable(); //关闭csrf
     }
