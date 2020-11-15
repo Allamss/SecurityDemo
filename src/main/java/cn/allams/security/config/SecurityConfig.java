@@ -27,12 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 其他配置
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 退出
+        http.logout().logoutUrl("/logout").
+                logoutSuccessUrl("/index.html").permitAll();
         // 配置没有权限跳转的自定义页面
         http.exceptionHandling().accessDeniedPage("/noauth.html");
         http.formLogin() //自定义自己编写的登陆页面
             .loginPage("/login.html") //登录页面设置
             .loginProcessingUrl("/user/login") //登录界面的url
-            .defaultSuccessUrl("/test/echo").permitAll() //登陆成功后默认跳转路径
+            .defaultSuccessUrl("/success.html").permitAll() //登陆成功后默认跳转路径
             .and().authorizeRequests()
                 .antMatchers("/", "/user/login", "/test/hello").permitAll() //设置不需要认证的路径
                 // 当前登录用户，只有具有admins权限的才可以访问这个路径
